@@ -10,7 +10,9 @@
 
         <footer>
           <img class="art art-bottom" src="{{ "/assets/bat-holo.png" | relative_url }}" alt="Bat-signal" width="170" height="113" loading="lazy">
-          <p><sub>{{ site.data.alfred.footer.disclaimer }}</sub></p>
+          {%- assign f = site.data.alfred.footer %}
+          <p><sub>{{ f.made | xml_escape }}</sub></p>
+          <p class="footer-links"><sub>{%- for l in f.links -%}{% unless forloop.first %} · {% endunless %}<a href="{{ l.url }}" rel="me noopener" target="_blank">{{ l.title }}</a>{%- endfor -%}</sub></p>
         </footer>
       </div>
     </main>

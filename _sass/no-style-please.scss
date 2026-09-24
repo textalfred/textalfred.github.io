@@ -359,7 +359,7 @@ header .subtitle { font-size: 1.25rem; color: $link-color; }
 // -------------- MENUS & LISTS -------------- //
 
 // text links in lists get a >= 44px hit area without changing the look
-.menu a, p > a:only-child, .back, .more a, .handles > li > a, .handles-index > li > a {
+.menu a, p > a:only-child, .footer-links a, .back, .more a, .handles > li > a, .handles-index > li > a {
   display: inline-block;
   padding: 10px 0;
 }
@@ -446,3 +446,6 @@ header .subtitle { font-size: 1.25rem; color: $link-color; }
 }
 
 
+
+.footer-links { margin: 0; }
+.footer-links a { padding: 12px 4px; }

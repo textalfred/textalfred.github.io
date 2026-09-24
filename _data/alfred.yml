@@ -72,4 +72,7 @@ final:
   error: "Something went amiss on our end. Do try again in a moment."
 
 footer:
-  disclaimer: "Alfred is an independent project and is not affiliated with DC Comics or Warner Bros."
+  made: "Made with <3 in Bengaluru, India."
+  links:
+    - { title: "linkedin", url: "https://www.linkedin.com/in/nitya-jain-993243243/" }
+    - { title: "x.com", url: "https://x.com/nityajain__" }

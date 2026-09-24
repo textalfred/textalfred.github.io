@@ -1,7 +1,7 @@
 title: Alfred # name of the site
 author: Alfred # placeholder
-url: "https://nityajain24.github.io" # production host
-baseurl: "/alfred-landing" # GitHub Pages project subpath
+url: "https://textalfred.github.io" # production host
+baseurl: "" # served from the root of textalfred.github.io
 description: Your AI butler, on WhatsApp. # overwritten in <head> by site.data.alfred.meta
 
 permalink: /:slug.html
