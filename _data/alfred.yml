@@ -1,0 +1,75 @@
+# Page copy. Source: ~/claw-whatsapp/LANDING.md
+# Keep the keys as they are; templates in _layouts/home.html depend on them.
+
+meta:
+  title: "Alfred: your AI butler, on WhatsApp"
+  description: "Alfred lives in your WhatsApp: groceries, calendar, spending, Hindi voice notes. Nothing spent without your word. Join the waitlist."
+  og_description: "Your AI butler, on WhatsApp. He takes care of everything else. Invite only."
+
+hero:
+  title: "Alfred."
+  subtitle: "Your AI butler, on WhatsApp."
+  lines:
+    - "You have a city to save. Or a quarterly review. Same thing, really."
+    - "Alfred takes care of everything else."
+  cta: "Join the waitlist"
+  note: "Invite only. Wayne Manor has limited rooms."
+
+pitch:
+  label: "the pitch"
+  paragraphs:
+    - "Every hero has someone keeping the lights on in the Batcave."
+    - "Alfred lives in your WhatsApp. No app to download, no dashboard to learn. You message him the way you'd message a person, and things get done."
+
+handles:
+  label: "what he handles"
+  # Teasers come from the _handles collection (featured: true, sorted by order).
+  more: "everything he handles >"
+  more_url: "/handles/"
+
+never:
+  label: "the one rule"
+  headline: "Spend a rupee without your word."
+  paragraphs:
+    - "Every order waits for a one-time code that only you can send."
+  more: "the one rule, in full >"
+  more_url: "/rule.html"
+
+why:
+  label: "why the wait"
+  paragraphs:
+    - "Alfred runs one household at a time, and each one gets its own private manor. Your data stays yours."
+  more: "why the wait >"
+  more_url: "/manor.html"
+
+menu:
+  - title: "take a look"
+    entries:
+      - { title: "everything he handles >", url: "/handles/" }
+      - { title: "the one rule >", url: "/rule.html" }
+      - { title: "why the wait >", url: "/manor.html" }
+
+handles_index:
+  title: "What Alfred handles."
+  intro: "Eight things he'll take off your hands, all from one WhatsApp chat. Pick one; he'll explain himself."
+  description: "Everything Alfred handles on WhatsApp: groceries, the cook, your spending, calendar, reminders, rides, reels and long documents."
+
+subpage_cta:
+  line: "Your room is being made up. Do put your name down."
+  cta: "Join the waitlist"
+
+final:
+  title: "The Bat-signal is optional."
+  subtitle: "The waitlist isn't."
+  label: "final call"
+  cta: "Join the waitlist"
+  fields:
+    name: { label: "Your name", placeholder: "Bruce" }
+    phone: { label: "WhatsApp number", placeholder: "+91 98xxx xxxxx" }
+    task: { label: "The most boring thing you'd hand off first", placeholder: "e.g. ordering groceries", optional: "(optional)" }
+  note: "We'll message you on WhatsApp when your room is ready. That's the only message you'll get from us until then."
+  success: "Very good. You're on the list, and I'll message you on WhatsApp the moment your room is ready."
+  error: "Something went amiss on our end. Do try again in a moment."
+
+footer:
+  disclaimer: "Alfred is an independent project and is not affiliated with DC Comics or Warner Bros."

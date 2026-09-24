@@ -1,0 +1,47 @@
+---
+layout: default
+---
+{%- assign is_handle = false -%}
+{%- if page.collection == "handles" -%}{%- assign is_handle = true -%}{%- endif -%}
+
+{%-if is_handle-%}
+  {%-include back_link.html to="/handles/"-%}
+{%-else-%}
+  {%-include back_link.html-%}
+{%-endif-%}
+
+<h1>{{ page.title }}</h1>
+
+{%-if page.exchange-%}
+  {%-include chat.html lines=page.exchange-%}
+{%-endif-%}
+
+<div class="page-body">
+{{ content }}
+</div>
+
+{%-if is_handle-%}
+  {%- assign handles = site.handles | sort: "order" -%}
+  {%- assign n = handles.size -%}
+  {%- for h in handles -%}{%- if h.url == page.url -%}{%- assign i = forloop.index0 -%}{%- endif -%}{%- endfor -%}
+  {%- if n > 1 -%}
+  <nav class="menu more-handles" aria-label="{{ site.data.alfred.handles.label }}">
+    <ul>
+      <li><b>{{ site.data.alfred.handles.label }}</b>
+        <ul>
+          {%- for k in (1..3) -%}
+            {%- if k < n -%}
+              {%- assign j = i | plus: k | modulo: n -%}
+              {%- assign h = handles[j] -%}
+              <li><a href="{{ h.url | relative_url }}">{{ h.nav | default: h.title }} ›</a></li>
+            {%- endif -%}
+          {%- endfor -%}
+          <li><a href="{{ site.data.alfred.handles.more_url | default: '/handles/' | relative_url }}">{{ site.data.alfred.handles.more }}</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  {%- endif -%}
+{%-endif-%}
+
+{%-include subpage_cta.html-%}

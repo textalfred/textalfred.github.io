@@ -1,0 +1,36 @@
+{%- assign final = site.data.alfred.final -%}
+{%- assign fields = final.fields -%}
+<form id="waitlist" class="waitlist" action="https://formspree.io/f/{{ site.formspree_id }}" method="POST">
+  <div data-fs-error>{{ final.error }}</div>
+
+  <p class="field">
+    <label for="name"><code>{{ fields.name.label }}</code></label>
+    <input id="name" name="name" type="text" required autocomplete="name"
+           placeholder="{{ fields.name.placeholder | escape }}" enterkeyhint="next" data-fs-field />
+    <span data-fs-error="name"></span>
+  </p>
+
+  <p class="field">
+    <label for="whatsapp"><code>{{ fields.phone.label }}</code></label>
+    <input id="whatsapp" name="whatsapp" type="tel" required autocomplete="tel"
+           pattern="\+?[0-9 ]{8,16}" inputmode="tel"
+           placeholder="{{ fields.phone.placeholder | escape }}" enterkeyhint="next" data-fs-field />
+    <span data-fs-error="whatsapp"></span>
+  </p>
+
+  <p class="field">
+    <label for="task"><code>{{ fields.task.label }}</code> {{ fields.task.optional }}</label>
+    <input id="task" name="task" type="text"
+           placeholder="{{ fields.task.placeholder | escape }}" enterkeyhint="send" data-fs-field />
+    <span data-fs-error="task"></span>
+  </p>
+
+  <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+  <input type="hidden" name="_subject" value="Alfred waitlist" />
+
+  <button type="submit" class="cta" data-fs-submit-btn>{{ final.cta }}</button>
+
+  <div data-fs-success role="status">{{ final.success }}</div>
+</form>
+
+<p><sub>{{ final.note }}</sub></p>

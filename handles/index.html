@@ -1,0 +1,31 @@
+---
+layout: default
+permalink: /handles/
+data_key: handles_index
+---
+{%- assign idx = site.data.alfred.handles_index -%}
+{%- assign handles = site.handles | sort: "order" -%}
+
+{%-include back_link.html-%}
+
+<h1>{{ idx.title }}</h1>
+
+<p>{{ idx.intro }}</p>
+
+<ul class="handles-index">
+  {%- for h in handles -%}
+    {%- assign first_you = nil -%}
+    {%- for line in h.exchange -%}
+      {%- if line.who == "you" -%}{%- assign first_you = line -%}{%- break -%}{%- endif -%}
+    {%- endfor -%}
+    <li>
+      <a href="{{ h.url | relative_url }}"><b>{{ h.title }}</b></a>
+      <p>{{ h.teaser }}</p>
+      {%- if first_you -%}
+        <div class="chat"><p><span class="who you">you ›</span> {{ first_you.text }}</p></div>
+      {%- endif -%}
+    </li>
+  {%- endfor -%}
+</ul>
+
+{%-include subpage_cta.html-%}

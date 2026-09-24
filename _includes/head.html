@@ -1,0 +1,50 @@
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#000" />
+
+  {%- assign meta = site.data.alfred.meta -%}
+  {%- assign t = page.title -%}
+  {%- assign d = page.description -%}
+  {%- if page.data_key -%}
+    {%- assign pd = site.data.alfred[page.data_key] -%}
+    {%- assign t = pd.title -%}
+    {%- assign d = pd.description -%}
+  {%- endif -%}
+  {%- if t -%}
+    {%- assign last = t | slice: -1 -%}
+    {%- if last == "." -%}{%- assign n = t.size | minus: 1 -%}{%- assign t = t | slice: 0, n -%}{%- endif -%}
+    {%- capture t -%}{{ t }} · Alfred{%- endcapture -%}
+  {%- else -%}
+    {%- assign t = meta.title | default: site.title -%}
+  {%- endif -%}
+  {%- assign og_d = d | default: meta.og_description | default: meta.description -%}
+  {%- assign d = d | default: meta.description %}
+  <title>{{ t }}</title>
+  <meta name="description" content="{{ d | escape }}" />
+  <meta property="og:title" content="{{ t | escape }}" />
+  <meta property="og:description" content="{{ og_d | escape }}" />
+
+  {%- comment -%} jekyll-seo-tag keeps canonical, og:url etc.; drop its title/description tags so the ones above win {%- endcomment -%}
+  {%- capture seo_tags -%}{%-seo title=false-%}{%- endcapture -%}
+  {%- assign seo_lines = seo_tags | split: "
+" -%}
+  {%- for line in seo_lines -%}
+    {%- if line contains '<meta' and line contains 'description"' -%}{%- continue -%}{%- endif -%}
+    {%- unless line contains 'og:title"' or line contains 'twitter:title"' %}
+  {{ line | strip }}
+    {%- endunless -%}
+  {%- endfor %}
+
+  <link rel="icon" type="image/png" href="{{ site.favicon | relative_url }}" />
+  <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}" />
+
+  {%- if page.layout == "home" %}
+  <script>
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', { formElement: '#waitlist', formId: '{{ site.formspree_id }}' });
+  </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+  {%- endif %}
+</head>

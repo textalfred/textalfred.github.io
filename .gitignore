@@ -1,0 +1,15 @@
+*.gem
+.bundle
+.jekyll-cache
+.sass-cache
+_site
+vendor
+Gemfile.lock
+
+# Local only: internal QA docs reference the private claw-whatsapp repo
+REVIEW.md
+TESTPLAN.md
+art/sitecheck.py
+# The original site owner's artwork, kept locally as a style reference only
+art/reference/
+.DS_Store

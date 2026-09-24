@@ -1,0 +1,6 @@
+{%- assign limit = include.limit | default: 99 -%}
+<div class="chat">
+  {%-for line in include.lines limit: limit-%}
+    <p><span class="who {{ line.who }}">{{ line.who }} ›</span> {{ line.text }}</p>
+  {%-endfor-%}
+</div>

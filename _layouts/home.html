@@ -1,0 +1,64 @@
+---
+layout: default
+---
+{%- assign a = site.data.alfred -%}
+<section class="hero">
+<img class="art art-top" src="{{ "/assets/alfred-holo.png" | relative_url }}" alt="Alfred, holographic butler" width="440" height="660" fetchpriority="high">
+
+<header>
+  <h1>{{ a.hero.title }}</h1>
+  <p class="subtitle"><b>{{ a.hero.subtitle }}</b></p>
+  {%-for line in a.hero.lines-%}
+    <p>{{ line }}</p>
+  {%-endfor-%}
+  <p class="cta-line"><a class="cta" href="#waitlist">{%- include bat.html -%}{{ a.hero.cta }}{%- include bat.html -%}</a></p>
+  <p><sub>{{ a.hero.note }}</sub></p>
+</header>
+
+<nav class="menu" aria-label="menu">
+  {%-include menu_item.html collection=a.menu-%}
+</nav>
+
+<a class="scroll-cue" href="#pitch" aria-label="Scroll for more">v</a>
+</section>
+
+<hr id="pitch" data-content="{{ a.pitch.label }}">
+{%-for p in a.pitch.paragraphs-%}
+  <p>{{ p }}</p>
+{%-endfor-%}
+
+<hr data-content="{{ a.handles.label }}">
+{%- assign featured = site.handles | where: "featured", true | sort: "order" -%}
+<ul class="handles">
+  {%-for h in featured-%}
+    <li>
+      <a href="{{ h.url | relative_url }}"><b>{{ h.title }}</b></a>
+      {%-include chat.html lines=h.exchange limit=2-%}
+    </li>
+  {%-endfor-%}
+</ul>
+<p class="more"><a href="{{ a.handles.more_url | relative_url }}">{{ a.handles.more }}</a></p>
+
+<hr data-content="{{ a.never.label }}">
+<blockquote>
+  <p class="headline"><b>{{ a.never.headline }}</b></p>
+  {%-for p in a.never.paragraphs-%}
+    <p>{{ p }}</p>
+  {%-endfor-%}
+</blockquote>
+<p class="more"><a href="{{ a.never.more_url | relative_url }}">{{ a.never.more }}</a></p>
+
+<hr data-content="{{ a.why.label }}">
+{%-for p in a.why.paragraphs-%}
+  <p>{{ p }}</p>
+{%-endfor-%}
+<p class="more"><a href="{{ a.why.more_url | relative_url }}">{{ a.why.more }}</a></p>
+
+<hr data-content="{{ a.final.label }}">
+<section class="final" id="final">
+  <h2 class="final-title">{{ a.final.title }}</h2>
+  <h3>{{ a.final.subtitle }}</h3>
+  {% include waitlist_form.html %}
+</section>
+
+{{ content }}

@@ -1,0 +1,448 @@
+@import 'colors';
+
+// bg color is also needed in html in order to
+// block body's background propagation
+// see: https://stackoverflow.com/a/61265706
+html, body { background: $outer-bg-color; }
+
+html { height: 100%; }
+
+body {
+  color: $text-red;
+  font-family: monospace;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  min-height: 100%;
+  overflow-wrap: break-word;
+}
+
+.post-meta { text-align: right; }
+
+.site-title { 
+  font-size: 36pt;
+  letter-spacing: 2pt;
+}
+
+.post-content {
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+.post-content h2, .post-content h3, .post-content h4,
+.post-content h5, .post-content h6, .post-content a {
+  font-family: monospace;
+}
+
+h2, h3, h4, h5, h6 { margin-top: 3rem; }
+
+hr { margin: 2rem 0; }
+
+p { margin: 1rem 0; }
+
+li { margin: 0.4rem 0; }
+
+*:target { background: $accent-dark; }
+
+// landing on #waitlist: no dark-red fill (red text on $accent-dark is ~2.9:1)
+#waitlist:target, .final:target { background: none; }
+
+h1 { color: $fg-color; }
+
+hr { color: $fg-color; }
+
+sub { font-size: 0.875rem; vertical-align: baseline; }
+
+.w {
+  max-width: 700px;
+  margin: 2em auto;
+  padding: 1em 2rem;
+  background-color: $bg-color;
+  box-shadow: 3pt;
+}
+
+hr {
+  text-align: center;
+  border: 0;
+
+  &:before { content: '/////' }
+  &:after { content: attr(data-content) '/////' }
+}
+
+table { width: 100%; }
+
+table, th, td {
+  border: thin solid black;
+  border-collapse: collapse;
+  padding: 0.4rem;
+}
+
+code {
+  color: white;
+  background: black;
+}
+
+div.highlighter-rouge code {
+  display: block;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  padding: 1rem;
+}
+
+blockquote {
+  border: 1px solid $fg-color;
+  margin: 1rem 0;
+  padding: 1rem;
+
+  p { margin: 0 0 0.6rem; }
+  p:last-child { margin-bottom: 0; }
+  .headline { font-size: 1.2em; }
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+a {
+  color: $link-color;
+}
+
+// The home hero is exactly one screen: art, header and menu, with the pitch
+// divider starting just below the fold. The art is the part that flexes.
+// --w-top is the space .w puts above the hero (margin + padding).
+.hero {
+  --w-top: 3em;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - var(--w-top));
+  min-height: calc(100svh - var(--w-top));
+}
+
+.hero .art-top {
+  flex: 1 1 0;
+  min-height: 90px;
+  max-height: 460px;
+  width: 100%;
+  object-fit: contain;
+  margin: 0 auto 1rem;
+}
+
+.hero .menu > ul { margin-bottom: 0; }
+
+.scroll-cue {
+  display: block;
+  margin-top: auto;
+  padding: 10px 0;
+  text-align: center;
+  color: #666;
+  text-decoration: none;
+  animation: cue 2s ease-in-out infinite;
+}
+
+@keyframes cue { 50% { transform: translateY(4px); } }
+
+@media (prefers-reduced-motion: reduce) { .scroll-cue { animation: none; } }
+
+// Short screens (small phones, 720p laptops): the menu entries sit side by
+// side and the spacing tightens, so the whole hero still fits one screen.
+@media (max-height: 800px) {
+  .hero .menu ul ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 1.25em;
+    padding-left: 0;
+    list-style: none;
+  }
+  .hero header p { margin: 0.5rem 0; }
+  .hero h1 { margin: 0.25rem 0; }
+  .scroll-cue { padding: 4px 0; }
+}
+
+// Very short screens (320x568, 360x640): drop the menu heading, shrink the
+// subtitle to body size and tighten line-height so the hero still fits.
+@media (max-height: 700px) {
+  .hero .menu > ul > li > b { display: none; }
+  .hero header { line-height: 1.3; }
+  .hero header .subtitle { font-size: 1rem; }
+  .hero .art-top { min-height: 72px; }
+  .hero .menu > ul { margin-top: 0; }
+}
+
+footer {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+// -------------- ALFRED -------------- //
+
+// big bold white link, like the original hero link; also used on the <button>
+.cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  box-sizing: border-box;
+  font-family: monospace;
+  font-size: clamp(1.1em, 5.5vw, 2em);
+  white-space: nowrap;
+  font-weight: 700;
+  line-height: 1.2;
+  max-width: 100%;
+  color: $link-color;
+  background: none;
+  border: 0;
+  padding: 12px 0;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid $fg-color;
+    outline-offset: 4px;
+  }
+
+  &:disabled { opacity: 0.6; cursor: wait; }
+}
+
+.bat {
+  display: inline-block;
+  width: 1.2em;
+  height: 0.5em;
+  vertical-align: middle;
+  color: $fg-color;
+}
+
+.cta .bat { margin: 0 0.25em; }
+
+// The submit button draws its bats in CSS: the Formspree script rewrites the
+// button text while submitting, which would strip inline SVGs.
+button.cta::before, button.cta::after {
+  content: "";
+  display: inline-block;
+  width: 1.2em;
+  height: 0.5em;
+  margin: 0 0.25em;
+  vertical-align: middle;
+  background: $fg-color;
+  -webkit-mask: url("../bat.svg") center / contain no-repeat;
+  mask: url("../bat.svg") center / contain no-repeat;
+}
+
+.handles {
+  padding-left: 1.2rem;
+
+  li { margin: 1.4rem 0; }
+
+  .outcome { margin: 0.4rem 0 0; }
+}
+
+.chat {
+  font-family: monospace;
+  color: $link-color;
+  margin: 0.4rem 0 0 1ch;
+
+  p { margin: 0.1rem 0; }
+
+  .who { font-weight: 700; }
+  .you { color: $dim-color; }
+  .alfred { color: $text-red; }
+}
+
+.waitlist {
+  margin: 1.5rem 0;
+
+  .field { margin: 0 0 1.2rem; }
+
+  label {
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  input {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    font-family: monospace;
+    font-size: 16px; // stops iOS zooming on focus
+    color: $link-color;
+    background: $bg-color;
+    border: 1px solid $fg-color;
+    border-radius: 0;
+    min-height: 48px;
+    padding: 0.75rem;
+
+    &::placeholder { color: $dim-color; }
+
+    &:focus {
+      outline: none;
+      border-color: $link-color;
+      box-shadow: 0 0 0 1px $fg-color;
+    }
+  }
+
+  .hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .cta { margin: 0.5rem 0 1rem; }
+}
+
+// #waitlist prefix outranks the default styles @formspree/ajax injects at runtime.
+// the library hides these until it sets data-fs-active; do the same before it loads
+#waitlist [data-fs-error],
+#waitlist [data-fs-success] { display: none; }
+
+#waitlist [data-fs-field][aria-invalid="true"] {
+  border-color: $fg-color;
+  border-width: 3px;
+}
+
+#waitlist [data-fs-error][data-fs-active] {
+  display: block;
+  color: $text-red;
+  font-size: 0.85em;
+  margin: 0.3rem 0 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+}
+
+#waitlist [data-fs-error=""][data-fs-active] { margin: 0 0 1rem; }
+
+#waitlist [data-fs-success][data-fs-active] {
+  display: block;
+  color: $link-color;
+  font-size: 1em;
+  background: $bg-color;
+  border: 1px solid $fg-color;
+  border-radius: 0;
+  padding: 1rem;
+  margin: 0 0 1rem;
+}
+
+
+// -------------- THEME SWITCHER -------------- //
+/*
+ @mixin dark-appearance {
+  filter: invert(1);
+  img {
+    filter: invert(1);
+
+    &.ioda { filter: invert(0); }
+  }
+
+  html, body {
+    background: black; 
+  }
+}
+
+body[a="dark"] { @include dark-appearance; }
+
+
+@media (prefers-color-scheme: dark) {
+  body[a="auto"] { @include dark-appearance; }
+}*/
+// -------------------------------------------- //
+
+.final-title { font-size: 2em; }
+.final { scroll-margin-top: 1rem; }
+.final h3 { color: $link-color; }
+
+// value prop: second-biggest text on the page, in white
+header .subtitle { font-size: 1.25rem; color: $link-color; }
+
+// -------------- MENUS & LISTS -------------- //
+
+// text links in lists get a >= 44px hit area without changing the look
+.menu a, p > a:only-child, .back, .more a, .handles > li > a, .handles-index > li > a {
+  display: inline-block;
+  padding: 10px 0;
+}
+
+.menu ul { margin: 0.4rem 0; }
+.menu li { margin: 0; }
+
+.back { font-weight: 700; }
+
+.more { margin: 0.5rem 0; }
+
+.handles-index {
+  padding-left: 1.2rem;
+
+  li { margin: 1.4rem 0; }
+  p { margin: 0 0 0.4rem; }
+}
+
+.page-body h2 { margin-top: 2rem; }
+
+.subpage-cta { text-align: center; }
+
+// -------------- STICKY CTA (mobile only) -------------- //
+
+.sticky-cta { display: none; }
+
+@media (max-width: 600px) {
+  .sticky-cta {
+    position: fixed;
+    inset: auto 0 0 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    padding-bottom: env(safe-area-inset-bottom);
+    background: $bg-color;
+    border-top: 1px solid $fg-color;
+    color: $link-color;
+    font: 700 1rem monospace;
+
+    .bat { margin: 0 0.5em; }
+  }
+}
+
+.sticky-cta[hidden] { display: none; }
+
+// -------------- MOBILE -------------- //
+
+@media (max-width: 600px) {
+  .w {
+    margin: 0;
+    padding: 1rem max(1rem, env(safe-area-inset-right))
+             calc(5rem + env(safe-area-inset-bottom))
+             max(1rem, env(safe-area-inset-left));
+  }
+
+  .hero { --w-top: 1rem; }
+  .hero .art-top { margin-bottom: 0.5rem; }
+
+  h1 { font-size: clamp(2rem, 10vw, 2.5rem); margin: 0.5rem 0; }
+
+  header p { margin: 0.75rem 0; }
+  header .cta-line { margin: 0.5rem 0; }
+
+  hr { margin: 1.5rem 0; }
+
+  h2, h3 { margin-top: 2rem; }
+
+  .menu > ul, .handles, .handles-index { padding-left: 0; list-style: none; }
+  .menu ul ul { padding-left: 1.5rem; }
+
+  .handles li, .handles-index li { margin: 1rem 0; }
+
+  .chat { margin-left: 0; }
+
+  .final-title { font-size: 1.6rem; }
+
+  .waitlist button.cta {
+    width: 100%;
+    justify-content: center;
+    border: 1px solid $link-color;
+  }
+}
+
+

@@ -1,0 +1,6 @@
+{%- assign s = site.data.alfred.subpage_cta -%}
+<hr data-content="{{ site.data.alfred.final.label }}">
+<section class="subpage-cta">
+  <p>{{ s.line }}</p>
+  <p class="cta-line"><a class="cta" href="{{ '/#waitlist' | relative_url }}">{%- include bat.html -%}{{ s.cta }}{%- include bat.html -%}</a></p>
+</section>
