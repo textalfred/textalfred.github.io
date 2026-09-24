@@ -31,4 +31,4 @@ Then he sends a one-time code. Reply with exactly that code and the order goes t
 - Touch your UPI PIN. That stays between you and your bank.
 - Swap in something you didn't ask for without saying so first.
 
-[How the code works >](/rule.html)
+[How the code works >]({{ '/rule.html' | relative_url }})

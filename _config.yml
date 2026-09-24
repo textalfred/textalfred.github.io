@@ -1,7 +1,7 @@
 title: Alfred # name of the site
 author: Alfred # placeholder
-url: "" # placeholder: set to the production URL when deployed
-baseurl: "" # subpath of the site, e.g. "/blog" (leave it blank "" if the site shouldn't use a subpath)
+url: "https://nityajain24.github.io" # production host
+baseurl: "/alfred-landing" # GitHub Pages project subpath
 description: Your AI butler, on WhatsApp. # overwritten in <head> by site.data.alfred.meta
 
 permalink: /:slug.html
