@@ -449,3 +449,39 @@ header .subtitle { font-size: 1.25rem; color: $link-color; }
 
 .footer-links { margin: 0; }
 .footer-links a { padding: 12px 4px; }
+
+// top-right link to the launch film (landing only)
+.film-link {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  z-index: 2;
+  padding: 8px 0;
+  color: $link-color;
+  font-weight: 700;
+  text-decoration: none;
+  &:hover, &:focus-visible { color: $fg-color; }
+}
+
+// phones: sit in the flow above the art instead of over it
+@media (max-width: 600px) {
+  .film-link {
+    position: static;
+    align-self: flex-end;
+    padding: 0 0 4px;
+    font-size: 14px;
+  }
+}
+
+.film {
+  margin: 1.5rem 0 1rem;
+  video {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border: 1px solid $accent-dark;
+  }
+}
+

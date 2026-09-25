@@ -54,6 +54,12 @@ handles_index:
   intro: "Eight things he'll take off your hands, all from one WhatsApp chat. Pick one; he'll explain himself."
   description: "Everything Alfred handles on WhatsApp: groceries, the cook, your spending, calendar, reminders, rides, reels and long documents."
 
+film:
+  link: "▶ watch the film"
+  title: "The film."
+  description: "A 40-second look at Alfred, the AI butler on WhatsApp: rides, calendar, dinner, reels and the cook, with nothing spent without your word."
+  intro: "Forty seconds with the butler. Sound on, if you please."
+
 subpage_cta:
   line: "Your room is being made up. Do put your name down."
   cta: "Join the waitlist"

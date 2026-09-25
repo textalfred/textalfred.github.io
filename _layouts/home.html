@@ -3,6 +3,7 @@ layout: default
 ---
 {%- assign a = site.data.alfred -%}
 <section class="hero">
+<a class="film-link" href="{{ '/film.html' | relative_url }}">{{ a.film.link }}</a>
 <img class="art art-top" src="{{ "/assets/alfred-holo.png" | relative_url }}" alt="Alfred, holographic butler" width="440" height="660" fetchpriority="high">
 
 <header>
