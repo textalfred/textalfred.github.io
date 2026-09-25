@@ -42,9 +42,30 @@
 
   {%- if page.layout == "home" %}
   <script>
-    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-    formspree('initForm', { formElement: '#waitlist', formId: '{{ site.formspree_id }}' });
+    // Posts the waitlist form to Alfred's box and shows the result using the
+    // same data-fs-* hooks the stylesheet already styles.
+    document.addEventListener("DOMContentLoaded", function () {
+      var f = document.getElementById("waitlist");
+      if (!f) return;
+      var err = f.querySelector("[data-fs-error='']");
+      var ok = f.querySelector("[data-fs-success]");
+      var btn = f.querySelector("[data-fs-submit-btn]");
+      var fallback = err.textContent;
+      f.addEventListener("submit", function (e) {
+        e.preventDefault();
+        err.removeAttribute("data-fs-active");
+        ok.removeAttribute("data-fs-active");
+        btn.disabled = true;
+        fetch(f.action, { method: "POST", body: new URLSearchParams(new FormData(f)) })
+          .then(function (r) { return r.json().catch(function () { return {}; }); })
+          .then(function (d) {
+            if (d && d.ok) { f.reset(); ok.setAttribute("data-fs-active", ""); }
+            else { err.textContent = (d && d.error) || fallback; err.setAttribute("data-fs-active", ""); }
+          })
+          .catch(function () { err.textContent = fallback; err.setAttribute("data-fs-active", ""); })
+          .then(function () { btn.disabled = false; });
+      });
+    });
   </script>
-  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
   {%- endif %}
 </head>

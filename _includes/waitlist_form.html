@@ -1,6 +1,6 @@
 {%- assign final = site.data.alfred.final -%}
 {%- assign fields = final.fields -%}
-<form id="waitlist" class="waitlist" action="https://formspree.io/f/{{ site.formspree_id }}" method="POST">
+<form id="waitlist" class="waitlist" action="{{ site.waitlist_endpoint }}" method="POST">
   <div data-fs-error>{{ final.error }}</div>
 
   <p class="field">

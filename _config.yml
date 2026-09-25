@@ -18,7 +18,9 @@ defaults:
 favicon: "favicon.png" # name+extension of favicon (must be in the root folder)
 # goat_counter: "yoursitename" # put your GoatCounter name if you want to use GoatCounter analytics
 
-formspree_id: xvkgqwak # Formspree waitlist form
+# Sign-ups post straight to Alfred's box (claw-whatsapp scripts/oauth-callback.js,
+# POST /waitlist). Formspree's plan has no API, so it was dropped on 2026-09-25.
+waitlist_endpoint: https://alfred-box.tail7c31b1.ts.net/waitlist
 
 theme_config:
   appearance: "dark" # can be "light", "dark" or "auto"
